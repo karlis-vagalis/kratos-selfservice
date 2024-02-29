@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html {
+		@apply h-full;
+	}
+
+	body {
+		@apply flex flex-col items-center justify-center h-full
+            bg-neutral-50
+            dark:bg-neutral-950 dark:text-neutral-200;
+	}
+}
+
+@layer utilities {
+	.shadow-outer {
+		@apply shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] dark:shadow-[rgba(0,0,0,_0.3)_0px_0px_16px];
+	}
+}
