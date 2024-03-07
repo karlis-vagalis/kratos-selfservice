@@ -44,16 +44,22 @@
 
 	<nav class="mt-4">
 		<ul class="flex flex-col gap-2">
-			<li class="flex flex-row items-center gap-2">
-				<Settings class="min-h-4 min-w-4 h-4 w-4 max-h-4 max-w-4" />
+			<li class="flex flex-row items-center gap-2 group">
+				<Settings class="min-h-4 min-w-4 h-4 w-4 max-h-4 max-w-4
+				 group-hover:text-aerospace-600 duration-300
+				 "/>
 				<a href="/settings">Settings</a>
 			</li>
-			<li class="flex flex-row items-center gap-2">
-				<ShieldCheck class="min-h-4 min-w-4 h-4 w-4 max-h-4 max-w-4" />
+			<li class="flex flex-row items-center gap-2 group">
+				<ShieldCheck class="min-h-4 min-w-4 h-4 w-4 max-h-4 max-w-
+				 group-hover:text-aerospace-600 duration-300
+				" />
 				<a href="/verification">Verification</a>
 			</li>
-			<li class="flex flex-row items-center gap-2">
-				<LogOut class="min-h-4 min-w-4 h-4 w-4 max-h-4 max-w-4" />
+			<li class="flex flex-row items-center gap-2 group">
+				<LogOut class="min-h-4 min-w-4 h-4 w-4 max-h-4 max-w-4
+				group-hover:text-aerospace-600 duration-300
+				" />
 				<a href="/logout">Log out</a>
 			</li>
 		</ul>

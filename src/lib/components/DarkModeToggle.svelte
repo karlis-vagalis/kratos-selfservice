@@ -34,7 +34,6 @@
 	aria-label="Toggle dark mode"
 	on:click={toggleDarkMode}
 	class="
-	bg-neutral-100 dark:bg-neutral-800
 	p-2 rounded-full
 	"
 >

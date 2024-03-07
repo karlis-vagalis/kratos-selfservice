@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import Fieldset from '$lib/components/Fieldset.svelte';
+	import Field from '$lib/components/Field.svelte';
 	import { onMount } from 'svelte';
 	import { addToast } from '$lib/components/Toaster.svelte';
 
@@ -183,16 +183,16 @@
 					method={data.kratos.ui.method}
 					action={data.kratos.ui.action}
 					class="
-						flex flex-col gap-4 min-w-0
+						flex flex-col mt-4 gap-6 min-w-0
 					"
 				>
 					{#if groups[0].name == 'default'}
 						{#each groups[0].nodes as node}
-							<Fieldset {node} />
+							<Field {node} />
 						{/each}
 					{/if}
 					{#each group.nodes as node}
-						<Fieldset {node} />
+						<Field {node} />
 					{/each}
 				</form>
 			</div>
