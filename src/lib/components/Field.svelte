@@ -9,6 +9,17 @@
 		var e = document.getElementById('to-be-copied');
 		var c = e?.innerText;
 	}
+	
+	// For code insertion
+
+	import { createPinInput, melt } from '@melt-ui/svelte';
+
+	const {
+		elements: { root, input, hiddenInput }
+	} = createPinInput({
+		name: node.attributes.name
+	});
+
 </script>
 
 {#if node.attributes.type == 'submit'}
@@ -58,9 +69,9 @@
 
 {#if node.type == 'img'}
 <fieldset class="flex flex-col min-w-0">
-	<label class="text-sm">
+	<div class="text-sm">
 		{node.attributes.required == true ? `${node.meta.label?.text} *` : `${node.meta.label?.text}`}
-	</label>
+	</div>
 	<img
 		src={node.attributes.src}
 		alt={node.meta.label?.text}
@@ -73,9 +84,9 @@
 
 {#if node.type == 'text'}
 	<fieldset class="flex flex-col min-w-0">
-		<label class="text-sm">
+		<div class="text-sm">
 			{node.attributes.required == true ? `${node.meta.label?.text} *` : `${node.meta.label?.text}`}
-		</label>
+		</div>
 		<div class="flex flex-col relative w-full my-2">
 			<code
 				class="bg-neutral-50 dark:bg-neutral-950 rounded-lg p-1.5 w-full
@@ -108,7 +119,29 @@
 	/>
 {/if}
 
-{#if node.attributes.type != 'submit' && node.attributes.type != 'button' && node.type != 'script' && node.type != 'img' && node.type != 'text' && node.attributes.type != 'hidden'}
+{#if node.attributes.name == 'code' || node.attributes.name == 'totp_code'}
+	<fieldset class="flex flex-col gap-4">
+		<label class="text-sm">
+			{node.attributes.required == true ? `${node.meta.label?.text} *` : `${node.meta.label?.text}`}
+		</label>
+		<div use:melt={$root} class="self-center flex items-center gap-2 flex-wrap">
+			{#each Array.from({ length: 6 }) as _}
+			<input
+				class="
+					dark:bg-neutral-900
+					focus:outline-none focus:ring-0 focus:border-2 focus:border-aerospace-600
+					text-center border
+					size-10
+					sm:size-12 rounded-md"
+				use:melt={$input()}
+			/>
+			{/each}
+		</div>
+		<input use:melt={$hiddenInput} />
+	</fieldset>
+{/if}
+
+{#if node.attributes.type != 'submit' && node.attributes.type != 'button' && node.type != 'script' && node.type != 'img' && node.type != 'text' && node.attributes.type != 'hidden' && node.attributes.name != 'code' && node.attributes.name != 'totp_code'}
 	<fieldset class="relative">
 		<input
 			class="

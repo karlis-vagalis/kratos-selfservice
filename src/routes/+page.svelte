@@ -29,6 +29,13 @@
 		</span>
 		{formatDistanceToNow(data.session.authenticated_at, { addSuffix: true })}
 	</div>
+
+	<div>
+		<span class="font-medium">
+			AAL: 
+		</span>
+		{data.session.authenticator_assurance_level == 'aal1' ? '1st Level' : '2nd Level'}
+	</div>
 	
 	<span class="font-medium">Active sessions:</span>
 	<nav>
