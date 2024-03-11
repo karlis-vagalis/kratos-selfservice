@@ -5,6 +5,7 @@ import { redirect } from '@sveltejs/kit';
 export const load: LayoutServerLoad = async ({ cookies, fetch, url }) => {
 
 	const flowId = url.searchParams.get('flow');
+	const returnTo = url.searchParams.get('return_to');
 
 	const parts = url.pathname.split('/');
 	const action = parts[1];
@@ -17,7 +18,12 @@ export const load: LayoutServerLoad = async ({ cookies, fetch, url }) => {
 	}
 
 	if (flowId == null) {
-		redirect(301, `${PUBLIC_KRATOS}/self-service/${action}/browser`);
+		if (returnTo == null) {
+			redirect(301, `${PUBLIC_KRATOS}/self-service/${action}/browser`);
+		} else {
+			redirect(301, `${PUBLIC_KRATOS}/self-service/${action}/browser?return_to=${returnTo}`);
+		}
+		
 	}
 
 	const modelUrl = `${PUBLIC_KRATOS}/self-service/${action}/flows?id=${flowId}`;

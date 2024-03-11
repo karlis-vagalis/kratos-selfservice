@@ -121,9 +121,9 @@
 
 {#if node.attributes.name == 'code' || node.attributes.name == 'totp_code'}
 	<fieldset class="flex flex-col gap-4">
-		<label class="text-sm">
+		<div class="text-sm">
 			{node.attributes.required == true ? `${node.meta.label?.text} *` : `${node.meta.label?.text}`}
-		</label>
+		</div>
 		<div use:melt={$root} class="self-center flex items-center gap-2 flex-wrap">
 			{#each Array.from({ length: 6 }) as _}
 			<input
