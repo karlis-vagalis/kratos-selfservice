@@ -3,7 +3,7 @@
 # 1st stage
 
 FROM node:21-alpine AS builder
-WORKDIR /app
+WORKDIR /ap
 COPY package*.json ./
 RUN npm ci
 COPY . .
