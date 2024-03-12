@@ -4,7 +4,9 @@ import { redirect} from '@sveltejs/kit';
 /** @type {import('@sveltejs/kit').Handle} */
 export const handle = async ({ event, resolve }) => {
 
-	const res = await event.fetch(`${env.PUBLIC_KRATOS}/sessions/whoami`);
+	// VERY IMAPORTANT! Do not use event.fetch because it creates infinite loop
+	// when running using node adapter
+	const res = await fetch(`${env.PUBLIC_KRATOS}/sessions/whoami`);
 	const session = await res.json();
 
 	if (session.hasOwnProperty('error')) {
