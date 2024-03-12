@@ -1,10 +1,10 @@
-<script lang="ts">
-    import { PUBLIC_ORGANIZATION } from '$env/static/public';
+<script>
+    import { env } from '$env/dynamic/public';
     export let data;
 </script>
 
 <svelte:head>
-    <title>Error | { PUBLIC_ORGANIZATION }</title>
+    <title>Error | { env.PUBLIC_ORGANIZATION }</title>
 </svelte:head>
 
 <pre class="w-full h-full overflow-scroll">

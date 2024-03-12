@@ -1,17 +1,27 @@
+# Multistage build to reduce final size of the image
+
+# 1st stage
+
+FROM node:21-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+RUN npm prune --omit=dev
+
+# 2nd stage
+
 FROM node:21-alpine
 
-RUN mkdir -p /app
 WORKDIR /app
 
-#COPY package*.json .
-#RUN yarn install --production
-#COPY ./build .
-
-COPY . .
-RUN yarn install
-RUN yarn build
+COPY --from=builder /app/build build/
+COPY --from=builder /app/node_modules node_modules/
+COPY package.json .
 
 EXPOSE 3000
-#CMD ["node", "index.js"]
 
-CMD ["yarn", "preview", "--host", "::", "--port", "3000"]
+ENV NODE_ENV=production
+
+CMD ["node", "build"]

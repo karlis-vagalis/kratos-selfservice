@@ -1,5 +1,4 @@
-<script lang="ts">
-	import { enhance } from '$app/forms';
+<script>
 	import Field from '$lib/components/Field.svelte';
 	import { onMount } from 'svelte';
 	import { addToast } from '$lib/components/Toaster.svelte';
@@ -7,14 +6,13 @@
 	import { createTabs, melt } from '@melt-ui/svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
-	import type { UiNode } from '@ory/client';
 
 	const [send, receive] = crossfade({
 		duration: 250,
 		easing: cubicInOut
 	});
 
-	function mapMessage(type: String) {
+	function mapMessage(type) {
 
 		let r = {
 			title: '',
@@ -37,8 +35,8 @@
 		return r;
 	}
 
-	function mapGroup(g: String) {
-		let r: String;
+	function mapGroup(g) {
+		let r;
 
 		if (g == 'profile') {
 			r = 'Profile';
@@ -79,7 +77,7 @@
 	});
 
 	// Group nodes
-	let groups: [{ name: String; nodes: [UiNode] }] = [];
+	let groups = [];
 	data.kratos.ui.nodes.forEach((n) => {
 		var g = n.group;
 
@@ -136,7 +134,7 @@
 			});
 		}
 
-		data.kratos.ui.nodes.forEach((e: UiNode) => {
+		data.kratos.ui.nodes.forEach((e) => {
 			if (e.messages.length > 0) {
 				e.messages.forEach((m) => {
 					//console.log(m)

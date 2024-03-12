@@ -1,9 +1,9 @@
-<script lang="ts">
-	import { PUBLIC_ORGANIZATION } from '$env/static/public';
+<script>
+	import { env } from '$env/dynamic/public';
 </script>
 
 <svelte:head>
-	<title>Login | {PUBLIC_ORGANIZATION}</title>
+	<title>Login | {env.PUBLIC_ORGANIZATION}</title>
 </svelte:head>
 
 <div class="w-10/12 mt-10 flex flex-col gap-2">

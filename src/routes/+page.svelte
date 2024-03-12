@@ -1,7 +1,7 @@
 <script>
 	import { LogOut, Settings, ShieldCheck } from 'lucide-svelte';
 	import { formatDistanceToNow } from 'date-fns';
-	import { PUBLIC_ORGANIZATION } from '$env/static/public';
+	import { env } from '$env/dynamic/public';
 
 	export let data;
 
@@ -15,7 +15,7 @@
 </script>
 
 <svelte:head>
-	<title>Session | {PUBLIC_ORGANIZATION}</title>
+	<title>Session | {env.PUBLIC_ORGANIZATION}</title>
 </svelte:head>
 
 <div class="w-full flex flex-col gap-3 sm:w-10/12">

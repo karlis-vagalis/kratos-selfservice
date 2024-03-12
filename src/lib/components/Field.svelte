@@ -1,14 +1,10 @@
-<script lang="ts">
+<script>
 	import { browser } from '$app/environment';
-	import type { UiNode } from '@ory/client';
-	export let node: UiNode;
+
+	/** @type {import('@ory/client').UiNode} */
+	export let node;
 
 	import { ClipboardCopy } from 'lucide-svelte';
-
-	function copyToClipboard(item) {
-		var e = document.getElementById('to-be-copied');
-		var c = e?.innerText;
-	}
 	
 	// For code insertion
 
@@ -100,7 +96,6 @@
 			<button
 				type="button"
 				class="group absolute end-2 top-1/2 -translate-y-1/2 border bg-white dark:bg-neutral-950 rounded-lg p-1 inline-flex items-center justify-center"
-				on:click={copyToClipboard}
 			>
 				<ClipboardCopy
 					class="min-h-4 min-w-4 h-4 w-4 max-h-4 max-w-4 group-hover:scale-110 transition-all"

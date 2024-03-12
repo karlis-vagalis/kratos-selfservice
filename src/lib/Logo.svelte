@@ -5,7 +5,6 @@
 	viewBox="0 0 264.58334 264.58333"
 	version="1.1"
 	xmlns="http://www.w3.org/2000/svg"
-	xmlns:svg="http://www.w3.org/2000/svg"
 >
 	<g transform="translate(-35.978733,-21.627666)">
 		<path
