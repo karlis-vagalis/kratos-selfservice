@@ -4,18 +4,9 @@
 	/** @type {import('@ory/client').UiNode} */
 	export let node;
 
-	import { ClipboardCopy } from 'lucide-svelte';
-	
-	// For code insertion
-
-	import { createPinInput, melt } from '@melt-ui/svelte';
 	import Password from './Password.svelte';
-
-	const {
-		elements: { root, input, hiddenInput }
-	} = createPinInput({
-		name: node.attributes.name
-	});
+	import Code from './Code.svelte';
+	import Text from './Text.svelte';
 
 </script>
 
@@ -80,30 +71,7 @@
 {/if}
 
 {#if node.type == 'text'}
-	<fieldset class="flex flex-col min-w-0">
-		<div class="text-sm">
-			{node.attributes.required == true ? `${node.meta.label?.text} *` : `${node.meta.label?.text}`}
-		</div>
-		<div class="flex flex-col relative w-full my-2">
-			<code
-				class="bg-neutral-50 dark:bg-neutral-950 rounded-lg p-1.5 w-full
-		font-medium text-aerospace-600 dark:text-aerospace-400
-		overflow-auto text-center
-	"
-				id="to-be-copied"
-			>
-				{node.attributes.text.text}
-			</code>
-			<button
-				type="button"
-				class="group absolute end-2 top-1/2 -translate-y-1/2 border bg-white dark:bg-neutral-950 rounded-lg p-1 inline-flex items-center justify-center"
-			>
-				<ClipboardCopy
-					class="min-h-4 min-w-4 h-4 w-4 max-h-4 max-w-4 group-hover:scale-110 transition-all"
-				/>
-			</button>
-		</div>
-	</fieldset>
+	<Text node={node} />
 {/if}
 
 {#if node.attributes.type == 'hidden'}
@@ -116,25 +84,7 @@
 {/if}
 
 {#if node.attributes.name == 'code' || node.attributes.name == 'totp_code'}
-	<fieldset class="flex flex-col gap-4">
-		<div class="text-sm">
-			{node.attributes.required == true ? `${node.meta.label?.text} *` : `${node.meta.label?.text}`}
-		</div>
-		<div use:melt={$root} class="self-center flex items-center gap-2 flex-wrap">
-			{#each Array.from({ length: 6 }) as _}
-			<input
-				class="
-					dark:bg-neutral-900
-					focus:outline-none focus:ring-0 focus:border-2 focus:border-aerospace-600
-					text-center border
-					size-10
-					sm:size-12 rounded-md"
-				use:melt={$input()}
-			/>
-			{/each}
-		</div>
-		<input use:melt={$hiddenInput} />
-	</fieldset>
+	<Code node={node}/>
 {/if}
 
 {#if node.attributes.type == 'password' }
