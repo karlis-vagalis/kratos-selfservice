@@ -8,7 +8,6 @@
 	} = createPinInput({
 		name: node.attributes.name
 	});
-
 </script>
 
 <fieldset class="flex flex-col gap-4">
