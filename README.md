@@ -1,17 +1,28 @@
 # Kratos Self-Service UI
 
-This is my attempt at developing self-service UI for [Ory Kratos](https://github.com/ory/kratos) in SvelteKit. It uses [Melt UI](https://github.com/melt-ui/melt-ui) and TailwindCSS for styling and components.
+This is a super fast and responsive self-service UI for open source user management system [Ory Kratos](https://github.com/ory/kratos) built in SvelteKit. The project uses [Melt UI](https://github.com/melt-ui/melt-ui) for creation of accessable and WAI-ARIA compliant components, and TailwindCSS for styling.
 
 ![Showcase](./docs/images/showcase.gif)
 
 
 ## Features
 
+- Disabled flows from Kratos config are considered (e.g. not showing Sign Up option, if Kratos config has that flow disabled)
 - Mobile support
 - Dark mode
 - All flows supported: login, logout, signup, recovery, verification, settings
 - Tested self-service methods: password, webauthn, code, totp
 - Error, success and info messages
+
+### Not supported (at least yet)
+
+- Languages other than English
+
+## Customization
+
+### Logo
+
+This can be set at `static/favicon.svg` for browser tab icon, and `src/lib/Logo.svelte` for main logo shown above forms.
 
 ## Environment variables
 

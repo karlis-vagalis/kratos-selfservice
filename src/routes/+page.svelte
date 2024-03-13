@@ -57,12 +57,14 @@
 				 "/>
 				<a href="/settings">Settings</a>
 			</li>
+			{#if data.flows['verification'] == true}
 			<li class="flex flex-row items-center gap-2 group">
 				<ShieldCheck class="min-h-4 min-w-4 h-4 w-4 max-h-4 max-w-
 				 group-hover:text-aerospace-600 duration-300
 				" />
 				<a href="/verification">Verification</a>
 			</li>
+			{/if}
 			<li class="flex flex-row items-center gap-2 group">
 				<LogOut class="min-h-4 min-w-4 h-4 w-4 max-h-4 max-w-4
 				group-hover:text-aerospace-600 duration-300
