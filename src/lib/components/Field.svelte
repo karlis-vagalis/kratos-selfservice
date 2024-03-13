@@ -9,6 +9,7 @@
 	// For code insertion
 
 	import { createPinInput, melt } from '@melt-ui/svelte';
+	import Password from './Password.svelte';
 
 	const {
 		elements: { root, input, hiddenInput }
@@ -136,7 +137,11 @@
 	</fieldset>
 {/if}
 
-{#if node.attributes.type != 'submit' && node.attributes.type != 'button' && node.type != 'script' && node.type != 'img' && node.type != 'text' && node.attributes.type != 'hidden' && node.attributes.name != 'code' && node.attributes.name != 'totp_code'}
+{#if node.attributes.type == 'password' }
+	<Password node={node} />
+{/if}
+
+{#if node.attributes.type != 'submit' && node.attributes.type != 'password' && node.attributes.type != 'button' && node.type != 'script' && node.type != 'img' && node.type != 'text' && node.attributes.type != 'hidden' && node.attributes.name != 'code' && node.attributes.name != 'totp_code'}
 	<fieldset class="relative">
 		<input
 			class="
