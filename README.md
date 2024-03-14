@@ -3,8 +3,6 @@
 This is a super fast and responsive self-service UI for open source user management system [Ory Kratos](https://github.com/ory/kratos) built in SvelteKit. The project uses [Melt UI](https://github.com/melt-ui/melt-ui) for creation of accessable and WAI-ARIA compliant components, and TailwindCSS for styling.
 
 ![Showcase](./docs/images/showcase.gif)
-![Showcase](./docs/images/showcase.mp4)
-
 
 ## Features
 
