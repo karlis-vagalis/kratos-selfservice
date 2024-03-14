@@ -53,4 +53,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.USERNAME_GITHUB }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          tags: ghcr.io/${{ secrets.USERNAME_GITHUB }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
