@@ -16,7 +16,7 @@ jobs:
 
     runs-on: ubuntu-latest
     container:
-      image: catthehacker/ubuntu:act-latest
+      image: ghcr.io/catthehacker/ubuntu:act-latest
     
     steps:
 
