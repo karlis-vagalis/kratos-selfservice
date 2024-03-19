@@ -7,7 +7,7 @@
 
 <div
     class="
-        w-full grid grid-cols-3
+        w-full grid grid-cols-3 mb-2
     "
 >
     <div></div>

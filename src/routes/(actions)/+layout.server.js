@@ -35,24 +35,27 @@ export const load = async ({ cookies, fetch, url }) => {
 		}
 	}
 
-	let message = '';
+	let title = '';
+	let message;
 	if (action == 'login') {
-		message = 'Sign in to your account';
+		title = 'Sign in to your account';
+		//message = 'Sign in with a social provider or available methods'
 	}
 	if (action == 'registration') {
-		message = 'Create an account';
+		title = 'Create an account';
 	}
 	if (action == 'verification') {
-		message = 'Verify your account';
+		title = 'Verify your account';
 	}
 	if (action == 'recovery') {
-		message = 'Recover your account';
+		title = 'Recover your account';
 	}
 	if (action == 'settings') {
-		message = 'Account settings';
+		title = 'Account settings';
 	}
 
 	return {
+		title,
 		message,
 		action,
 		kratos: model

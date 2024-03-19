@@ -13,7 +13,8 @@
     flex flex-col items-center gap-6
 	w-full sm:max-w-[600px]
     shadow-outer rounded-xl
-	pt-12 px-6 pb-6
+	pt-12 pb-6
+	px-8 xs:px-14 sm:px-20 
 	"
 	in:fade={{ duration: 150 }}
 >

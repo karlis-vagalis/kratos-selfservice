@@ -18,7 +18,7 @@
 	<title>Session | {env.PUBLIC_ORGANIZATION}</title>
 </svelte:head>
 
-<div class="w-full flex flex-col gap-3 sm:w-10/12">
+<div class="w-full flex flex-col gap-3 sm:w-full">
 	<h1 class="self-center mb-4 text-center font-bold text-lg sm:text-xl">
 		Welcome, {name}!
 	</h1>

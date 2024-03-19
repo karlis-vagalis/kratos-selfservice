@@ -1,10 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
-  darkMode: 'class',
-  theme: {
-    extend: {
-      fontFamily: {
+	content: ['./src/**/*.{html,js,svelte,ts}'],
+	darkMode: 'class',
+	theme: {
+		extend: {
+			screens: {
+				xs: '400px'
+			},
+			fontFamily: {
 				sans: ['Inter', 'ui-sans-serif', 'system-ui'],
 				serif: ['"Merriweather"', 'ui-serif'],
 				mono: ['JetBrains Mono', 'ui-monospace']
@@ -24,8 +27,7 @@ export default {
 					950: '#461004'
 				}
 			}
-    },
-  },
-  plugins: [],
-}
-
+		}
+	},
+	plugins: []
+};

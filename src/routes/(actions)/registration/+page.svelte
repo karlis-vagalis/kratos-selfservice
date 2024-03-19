@@ -6,7 +6,7 @@
 	<title>Registration | {env.PUBLIC_ORGANIZATION}</title>
 </svelte:head>
 
-<div class="w-10/12 mt-10">
+<div class="w-full mt-10">
 	<span>Already have an account? <a href="/login" class="font-medium text-aerospace-500 hover:text-aerospace-700">Log in</a></span>
 </div>
 

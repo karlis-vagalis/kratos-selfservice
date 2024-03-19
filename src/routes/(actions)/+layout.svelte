@@ -1,35 +1,43 @@
 <script>
 	import Field from '$lib/components/Field.svelte';
+	import Oidc from '$lib/components/Oidc.svelte';
 	import { onMount } from 'svelte';
 	import { addToast } from '$lib/components/Toaster.svelte';
 
-	import { createTabs, melt } from '@melt-ui/svelte';
+	import { createTabs, melt, createSeparator } from '@melt-ui/svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
+	import { da } from 'date-fns/locale';
 
 	const [send, receive] = crossfade({
 		duration: 250,
 		easing: cubicInOut
 	});
 
-	function mapMessage(type) {
+	const {
+		elements: { root: horizontal }
+	} = createSeparator({
+		orientation: 'horizontal',
+		decorative: true
+	});
 
+	function mapMessage(type) {
 		let r = {
 			title: '',
 			color: ''
-		}
+		};
 
 		if (type == 'success') {
 			r.title = 'Success';
-			r.color = 'bg-emerald-500'
+			r.color = 'bg-emerald-500';
 		}
 		if (type == 'info') {
 			r.title = 'Info';
-			r.color = 'bg-sky-500'
+			r.color = 'bg-sky-500';
 		}
 		if (type == 'error') {
 			r.title = 'Error';
-			r.color = 'bg-red-500'
+			r.color = 'bg-red-500';
 		}
 
 		return r;
@@ -37,6 +45,10 @@
 
 	function mapGroup(g) {
 		let r;
+
+		if (g == 'oidc') {
+			r = 'OIDC';
+		}
 
 		if (g == 'profile') {
 			r = 'Profile';
@@ -99,7 +111,7 @@
 
 	// Sort groups
 
-	const groupOrder = ['profile', 'password', 'totp', 'webauthn', 'code'];
+	const groupOrder = ['profile', 'password', 'totp', 'webauthn', 'code', 'oidc'];
 
 	groups.sort(function (a, b) {
 		let oa = groupOrder.indexOf(a.name);
@@ -113,15 +125,12 @@
 		states: { value }
 	} = createTabs({
 		loop: false
-
 	});
-	$value = `tab-${groups[1].name}`
-	
+	$value = `tab-${groups[1].name}`;
 
 	onMount(() => {
-		
 		if (data.kratos.ui.messages?.length > 0) {
-			data.kratos.ui.messages.forEach(e => {
+			data.kratos.ui.messages.forEach((e) => {
 				//console.log(e)
 				var r = mapMessage(e.type);
 				addToast({
@@ -138,7 +147,7 @@
 			if (e.messages.length > 0) {
 				e.messages.forEach((m) => {
 					//console.log(m)
-					var r = mapMessage(m.type)
+					var r = mapMessage(m.type);
 					addToast({
 						data: {
 							title: r.title,
@@ -152,48 +161,88 @@
 	});
 </script>
 
-<h1 class="font-semibold text-xl text-center">{data.message}</h1>
+<h1 class="font-semibold text-2xl text-center ">{data.title}</h1>
+{#if data.message != null}
+	<p class="w-full">{data.message}</p>
+{/if}
+{#if data.action != 'settings'}
+	{#each groups as gr}
+		{#if gr.name == 'oidc'}
+			<div
+				class="flex flex-row gap-4 items-center
+			h-12 w-full
+		"
+			>
+				{#each gr.nodes as node}
+					<Oidc {node} action={data.kratos.ui.action} />
+				{/each}
+			</div>
+			<div
+				use:melt={$horizontal}
+				class="relative
+			h-[1px] w-full
+		bg-neutral-200 dark:bg-neutral-700
+		"
+			>
+				<div
+					class="
+			bg-white dark:bg-neutral-900 text-xs text-neutral-300 dark:text-neutral-700
+			px-3
+			uppercase
+			absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+			"
+				>
+					or
+				</div>
+			</div>
+		{/if}
+	{/each}
+{/if}
 <div use:melt={$root} class="w-full flex flex-col items-center">
 	<div use:melt={$list} class="flex flex-row flex-wrap justify-center mb-4">
 		{#each groups as gr}
 			{#if gr.name != 'default'}
-				<button
-					use:melt={$trigger(`tab-${gr.name}`)}
-					class="relative px-6 py-3 font-medium
+				{#if gr.name != 'oidc' || data.action == 'settings'}
+					<button
+						use:melt={$trigger(`tab-${gr.name}`)}
+						class="relative px-6 py-3 font-medium
 				"
-				>
-					{mapGroup(gr.name)}
-					{#if $value === `tab-${gr.name}`}
-						<div
-							in:send={{ key: 'trigger' }}
-							out:receive={{ key: 'trigger' }}
-							class="absolute bottom-1 left-1/2 h-1 w-6 -translate-x-1/2 rounded-full bg-aerospace-600"
-						/>
-					{/if}
-				</button>
+					>
+						{mapGroup(gr.name)}
+						{#if $value === `tab-${gr.name}`}
+							<div
+								in:send={{ key: 'trigger' }}
+								out:receive={{ key: 'trigger' }}
+								class="absolute bottom-1 left-1/2 h-1 w-6 -translate-x-1/2 rounded-full bg-aerospace-600"
+							/>
+						{/if}
+					</button>
+				{/if}
 			{/if}
 		{/each}
 	</div>
 	{#each groups as group}
 		{#if group.name != 'default'}
-			<div use:melt={$content(`tab-${group.name}`)} class="w-10/12">
-				<form
-					method={data.kratos.ui.method}
-					action={data.kratos.ui.action}
-					class="
+			{#if group.name != 'oidc' || data.action == 'settings'}
+				<div use:melt={$content(`tab-${group.name}`)} class="w-full">
+					<form
+						method={data.kratos.ui.method}
+						action={data.kratos.ui.action}
+						class="
 						flex flex-col mt-4 gap-6 min-w-0
 					"
-				>
-					{#if groups[0].name == 'default'}
-						{#each groups[0].nodes as node}
+					>
+						{#if groups[0].name == 'default'}
+							{#each groups[0].nodes as node}
+								<Field {node} />
+							{/each}
+						{/if}
+						{#each group.nodes as node}
 							<Field {node} />
 						{/each}
-					{/if}
-					{#each group.nodes as node}
-						<Field {node} />
-					{/each}
-				</form>
-			</div>
+					</form>
+				</div>
+			{/if}
 		{/if}
 	{/each}
 	<slot />
