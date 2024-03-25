@@ -71,6 +71,8 @@
 
 	export let data;
 
+	//console.log(data.kratos.ui.nodes)
+
 	// Sort nodes
 	const order = [
 		'identifier',

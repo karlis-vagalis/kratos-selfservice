@@ -12,6 +12,9 @@
 
 	//console.log(data);
     //console.log(data.session.devices);
+	//console.log(data.session.identity.verifiable_addresses)
+
+	let isVerified = data.session.identity.verifiable_addresses[0].verified
 </script>
 
 <svelte:head>
@@ -29,6 +32,15 @@
 		</span>
 		{formatDistanceToNow(data.session.authenticated_at, { addSuffix: true })}
 	</div>
+
+	{#if isVerified}
+	<div>
+		<span class="font-medium">
+			Verified: 
+		</span>
+		true
+	</div>
+	{/if}
 
 	<div>
 		<span class="font-medium">
@@ -57,7 +69,7 @@
 				 "/>
 				<a href="/settings">Settings</a>
 			</li>
-			{#if data.flows['verification'] == true}
+			{#if data.flows['verification'] == true && isVerified == false}
 			<li class="flex flex-row items-center gap-2 group">
 				<ShieldCheck class="min-h-4 min-w-4 h-4 w-4 max-h-4 max-w-
 				 group-hover:text-aerospace-600 duration-300
