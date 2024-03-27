@@ -163,7 +163,11 @@
 	});
 </script>
 
-<h1 class="font-semibold text-2xl text-center ">{data.title}</h1>
+<h1 class="font-semibold text-center tracking-tight
+	text-2xl sm:text-3xl
+	my-1 sm:my-3
+	
+">{data.title}</h1>
 {#if data.message != null}
 	<p class="w-full">{data.message}</p>
 {/if}

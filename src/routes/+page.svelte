@@ -22,7 +22,12 @@
 </svelte:head>
 
 <div class="w-full flex flex-col gap-3 sm:w-full">
-	<h1 class="self-center mb-4 text-center font-bold text-lg sm:text-xl">
+	<h1
+		class="self-center mb-4 text-center
+		font-semibold tracking-tight
+		text-2xl sm:text-3xl
+		my-1 sm:my-3
+		">
 		Welcome, {name}!
 	</h1>
 

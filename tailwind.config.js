@@ -10,7 +10,8 @@ export default {
 			fontFamily: {
 				sans: ['Inter', 'ui-sans-serif', 'system-ui'],
 				serif: ['"Merriweather"', 'ui-serif'],
-				mono: ['JetBrains Mono', 'ui-monospace']
+				mono: ['JetBrains Mono', 'ui-monospace'],
+				display: ['Figtree', 'ui-sans-serif', 'system-ui']
 			},
 			colors: {
 				aerospace: {

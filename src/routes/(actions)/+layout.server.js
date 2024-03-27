@@ -38,7 +38,7 @@ export const load = async ({ cookies, fetch, url }) => {
 	let title = '';
 	let message;
 	if (action == 'login') {
-		title = 'Sign in to your account';
+		title = 'Log in to your account';
 		//message = 'Sign in with a social provider or available methods'
 	}
 	if (action == 'registration') {
